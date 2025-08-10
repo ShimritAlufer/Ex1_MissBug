@@ -40,7 +40,6 @@ export function BugIndex() {
     }
     try {
       const savedBug = await bugService.save(bug)
-      console.log('Added Bug', savedBug)
       setBugs(prevBugs => [...prevBugs, savedBug])
       showSuccessMsg('Bug added')
     } catch (err) {

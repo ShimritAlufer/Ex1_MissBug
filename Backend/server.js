@@ -1,11 +1,10 @@
 import express from 'express' 
 import cors from 'cors'
-import { bugService } from './src/services/bug.service.js'
 import { loggerService } from './src/services/logger.service.js'
+import { bugRoutes } from './api/bug/bug.routes.js'
+import { userRoutes } from './api/user/user.routes.js'
 
 const app = express() 
-const bugs = await bugService.query()
-app.use(express.static('public'))
 
 const corsOptions = {
 	origin: [
@@ -18,33 +17,15 @@ const corsOptions = {
 }
 
 app.use(cors(corsOptions))
+app.use(express.json())
+app.use(express.static('public'))
+
+//* Routes
+app.use('/api/bug', bugRoutes)
+app.use('/api/user', userRoutes)
 
 app.get('/', (req, res) => res.send('Hello there')) 
 app.listen(3030, () => console.log('Server ready at http://127.0.0.1:3030/api/bug'))
 
-app.get('/api/bug', async (req, res) => { res.send(bugs)})
 
-app.get('/api/bug/save', async (req, res) => {
-    const { _id, title, severity, description } = req.query
-    const bugToSave = { _id, title, severity: +severity, description, createdAt: 1542107359454 }
-    const savedBug = await bugService.save(bugToSave)
-	res.send(savedBug)
-})
 
-app.get('/api/bug/:bugId', async (req, res) => { 
-    const bugId = req.params.bugId
-    try {
-        const bug = await bugService.getById(bugId)
-        res.send(bug)
-    } catch (err) {
-        loggerService.error(err)
-        res.status(404).send(err)
-    }
-})
-
-app.get('/api/bug/:bugId/remove', async (req, res) => {
-    const bugId = req.params.bugId
-
-    await bugService.remove(bugId)
-    res.send(bugs)
-})

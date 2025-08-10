@@ -1,5 +1,5 @@
-import { makeId, readJsonFile, writeJsonFile } from './util.service.js'
-import { loggerService } from './logger.service.js'
+import { makeId, readJsonFile, writeJsonFile } from '../../src/services/util.service.js'
+import { loggerService } from '../../src/services/logger.service.js'
 
 const bugs = readJsonFile('./data/bug.json')
 
@@ -27,7 +27,7 @@ async function save(bugToSave) {
     return bugToSave 
 }
 
-function _saveBugs() {
+async function _saveBugs() {
     return writeJsonFile('./data/bug.json', bugs)
 } 
 

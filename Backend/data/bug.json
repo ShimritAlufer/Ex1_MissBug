@@ -7,17 +7,17 @@
     "createdAt": 1542107359454
   },
   {
-    "_id": "KbOgx4",
-    "title": "Cannot find Car",
-    "severity": 1,
-    "description": "get error cannot find the car by id",
+    "_id": "l4mlDE",
+    "title": "Cannot save Car",
+    "severity": 9,
+    "description": "save button not functioning",
     "createdAt": 1542107359454
   },
   {
-    "_id": "l4mlDE",
-    "title": "Cannot save Car",
-    "severity": 0,
-    "description": "save button not functioning",
+    "_id": "LnkdBz",
+    "title": "hello bug",
+    "severity": 6,
+    "description": "my bug",
     "createdAt": 1542107359454
   }
 ]

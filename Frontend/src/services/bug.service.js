@@ -4,7 +4,7 @@ var axios = Axios.create({
     withCredentials: true,
 })
 
-const BASE_URL = '//localhost:3030/api/bug'
+const BASE_URL = '//localhost:3030/api/bug/'
 
 export const bugService = {
     query,
@@ -36,23 +36,55 @@ async function query(filterBy = {}) {
     }
 
     return bugs
+
+    /**
+     *   try {
+        const { data: cars } = await axios.get(BASE_URL, { params: filterBy })
+        return cars
+    } catch (err) {
+        console.log('err:', err)
+        throw err
+    }
+     */
 }
 
 async function getById(bugId) {
-    var res = await axios.get(BASE_URL + '/' + bugId)
-    return res.data
+    try {
+        const { data: bug } = await axios.get(BASE_URL + bugId)
+        return bug
+    } catch (err) {
+        console.log('err:', err)
+        throw err
+    }
 }
 
 async function remove(bugId) {
-    return await axios.get(BASE_URL + '/' + bugId + '/remove')
+    const url = BASE_URL + bugId
+    try {
+        const { data } = await axios.delete(url)
+        return data
+    } catch (err) {
+        console.log('err:', err)
+        throw err
+    }
 }
 
 async function save(bug) {
-    var queryStr = `/save?title=${bug.title}&severity=${bug.severity}&description=${bug.description}`    
-	if (bug._id) queryStr += `&_id=${bug._id}`
-
-    const res = await axios.get(BASE_URL + queryStr)
-    return res.data
+    try{
+        if (bug._id){
+            const { data: savedBug } = await axios.put(BASE_URL + bug._id, bug)
+            return savedBug
+        }
+        else {
+            const { data: savedBug } = await axios.post(BASE_URL, bug)
+            return savedBug
+        }
+        
+    }
+    catch (err) {
+        console.log('err:', err)
+        throw err
+    }
 }
 
 function getDefaultFilter() {
