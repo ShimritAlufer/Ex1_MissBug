@@ -24,28 +24,14 @@ export const bugService = {
 
 async function query(filterBy = {}) {
 
-    var {data:bugs} = await axios.get(BASE_URL)
-
-    if (filterBy.title){
-        const regExp = new RegExp(filterBy.title, 'i')
-        bugs = bugs.filter(bug => regExp.test(bug.title))
+    try{
+        var {data:bugs} = await axios.get(BASE_URL, { params: filterBy })
+        return bugs
     }
-    
-    if (filterBy.severity){
-        bugs = bugs.filter(bug => bug.severity >= filterBy.severity)
-    }
-
-    return bugs
-
-    /**
-     *   try {
-        const { data: cars } = await axios.get(BASE_URL, { params: filterBy })
-        return cars
-    } catch (err) {
+    catch (err) {
         console.log('err:', err)
         throw err
     }
-     */
 }
 
 async function getById(bugId) {
@@ -88,5 +74,11 @@ async function save(bug) {
 }
 
 function getDefaultFilter() {
-	return { title: '', severity: '' }
+    return {
+        title: '',
+        severity: 0,
+        pageIdx: undefined,
+        sortBy: 'createdAt', 
+        sortDir: 'asc' 
+    }
 }

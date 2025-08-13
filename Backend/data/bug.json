@@ -1,23 +1,23 @@
 [
   {
-    "_id": "U1rXTE",
-    "title": "Cannot remove Car",
-    "severity": 2,
-    "description": "car not deleted from list",
-    "createdAt": 1542107359454
-  },
-  {
     "_id": "l4mlDE",
     "title": "Cannot save Car",
-    "severity": 9,
+    "severity": 6,
     "description": "save button not functioning",
     "createdAt": 1542107359454
   },
   {
-    "_id": "LnkdBz",
-    "title": "hello bug",
-    "severity": 6,
-    "description": "my bug",
+    "_id": "U1rXTE",
+    "title": "Cannot remove Car",
+    "severity": 5,
+    "description": "car not deleted from list",
+    "createdAt": 1542107359454
+  },
+  {
+    "_id": "DoMLOb",
+    "title": "my bug",
+    "severity": 2,
+    "description": "hello bug",
     "createdAt": 1542107359454
   }
 ]
