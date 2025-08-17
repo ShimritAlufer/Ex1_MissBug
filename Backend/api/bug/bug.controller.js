@@ -31,25 +31,6 @@ export async function getBugs(req, res) {
 
 
 
-// export async function getBugs(req, res)
-// {
-//     console.log('req.query:', req.query)
-//     const { title, severity, pageIdx} = req.query
-    
-//     const filterBy = { title, severity: +severity}
-
-//     if(pageIdx !== undefined) filterBy.pageIdx = +pageIdx
-
-//     try{
-//         const bugs = await bugService.query(filterBy)
-//         res.send(bugs)
-//     }
-//     catch (err){
-//         loggerService.error('Cannot get bugs', err)
-//         res.status(400).send('Cannot get bugs')
-//     }
-// }
-
 export async function addBug(req, res) {
     const { _id, title, severity, description } = req.body
     const bugToSave = { _id, title, severity: +severity, description, createdAt: 1542107359454 }
@@ -82,8 +63,12 @@ export async function updateBug(req, res) {
 }
 
 export async function getBug(req, res){
-    const bugId = req.params.bugId
     try {
+        const { bugId } = req.params
+        let visitedBugIds = req.cookies.visitedBugIds || []
+        if (!visitedBugIds.includes(bugId)) visitedBugIds.push(bugId)
+        if (visitedBugIds.length > 3) return res.status(403).send('Wait for a bit')
+        res.cookie('visitedBugIds', visitedBugIds, { maxAge: 1000 * 10 })
         const bug = await bugService.getById(bugId)
         res.send(bug)
     } catch (err) {

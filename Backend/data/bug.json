@@ -19,5 +19,12 @@
     "severity": 2,
     "description": "hello bug",
     "createdAt": 1542107359454
+  },
+  {
+    "_id": "mSBtFZ",
+    "title": "Hello bug",
+    "severity": 1,
+    "description": "hard one",
+    "createdAt": 1542107359454
   }
 ]
