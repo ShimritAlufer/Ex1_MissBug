@@ -9,6 +9,7 @@ export const userService = {
     getById,
     remove,
     save,
+    getByUsername,
 }
 
 
@@ -21,6 +22,16 @@ function getById(userId) {
     const user = users.find(user => user._id === userId)
     if (!user) return Promise.reject('User not found!')
     return Promise.resolve(user)
+}
+
+async function getByUsername(username) {
+    try {
+        const user = users.find(user => user.username === username)
+        return user
+    } catch (err) {
+        loggerService.error('userService[getByUsername] : ', err)
+        throw err
+    }
 }
 
 function remove(userId) {

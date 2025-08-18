@@ -4,27 +4,31 @@
     "title": "Cannot save Car",
     "severity": 6,
     "description": "save button not functioning",
-    "createdAt": 1542107359454
+    "createdAt": 1542107359454,
+    "creator": { "_id": "u101", "fullname": "Puki ja"}
   },
   {
     "_id": "U1rXTE",
     "title": "Cannot remove Car",
     "severity": 5,
     "description": "car not deleted from list",
-    "createdAt": 1542107359454
+    "createdAt": 1542107359454,
+    "creator": { "_id": "u101", "fullname": "Puki ja"}
   },
   {
     "_id": "DoMLOb",
     "title": "my bug",
     "severity": 2,
     "description": "hello bug",
-    "createdAt": 1542107359454
+    "createdAt": 1542107359454,
+    "creator": { "_id": "u101", "fullname": "Puki ja"}
   },
   {
     "_id": "mSBtFZ",
     "title": "Hello bug",
     "severity": 1,
     "description": "hard one",
-    "createdAt": 1542107359454
+    "createdAt": 1542107359454,
+    "creator": { "_id": "u101", "fullname": "Puki ja"}
   }
 ]

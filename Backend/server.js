@@ -3,6 +3,7 @@ import cors from 'cors'
 import { loggerService } from './src/services/logger.service.js'
 import { bugRoutes } from './api/bug/bug.routes.js'
 import { userRoutes } from './api/user/user.routes.js'
+import { authRoutes } from './api/auth/auth.routes.js'
 import cookieParser from 'cookie-parser'
 
 const app = express() 
@@ -26,6 +27,7 @@ app.use(express.static('public'))
 //* Routes
 app.use('/api/bug', bugRoutes)
 app.use('/api/user', userRoutes)
+app.use('/api/auth', authRoutes)
 
 app.get('/', (req, res) => res.send('Hello there')) 
 app.listen(3030, () => console.log('Server ready at http://127.0.0.1:3030/api/bug'))
